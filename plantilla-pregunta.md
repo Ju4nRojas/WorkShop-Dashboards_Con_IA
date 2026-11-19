@@ -3,7 +3,6 @@
 Complétala **antes** de pedirle nada a la IA. Si no puedes llenar "Control", todavía no tienes una pregunta.
 
 ```
-MISIÓN: ____
 Decisión     ¿Qué vas a decidir o a qué decisión ayuda esto?
              ______________________________________________
 Pregunta     Una frase, con período, segmento y unidad.
@@ -14,7 +13,7 @@ Período      ¿Mismos meses en ambos años? ¿Hasta qué mes?
              ______________________________________________
 Dato         Archivo y columnas:
              ______________________________________________
-Gráfico      ¿Cuál responde mejor a la pregunta? (KPI · línea · barras · calor · tabla)
+Gráfico      ¿Cuál responde mejor? (indicador · línea · barras · tabla)
              ______________________________________________
 Control      ¿Qué cifra esperas y por qué? ¿Con qué la vas a comparar?
              ______________________________________________
@@ -24,15 +23,15 @@ Título       La conclusión en una frase (no el nombre de la tabla).
              ______________________________________________
 ```
 
-## Ejemplo resuelto (el del gancho)
+## Ejemplo resuelto (distinto de las preguntas del taller)
 ```
-Decisión     ¿Ajustamos el abastecimiento del próximo año?
-Pregunta     ¿Cuánto creció el volumen despachado ene–oct 2026 frente a ene–oct 2025?
-Métrica      Suma de volumen_gal, en Mgal; variación % = actual / anterior − 1
-Período      Enero a octubre en ambos años
-Dato         despachos_eds_mensual.csv (anio, mes, volumen_gal)
-Gráfico      KPI con referencia + línea mensual
-Control      Alrededor de +3 % (lo confirma el facilitador)
-Límites      Es demanda de estaciones, no venta al consumidor; no dice la causa
-Título       "El consumo creció 3,2 % en ene–oct 2026 frente al mismo período de 2025"
+Decisión     ¿Cuánto debe pesar el diésel en el plan de abastecimiento?
+Pregunta     ¿Qué porcentaje del volumen total despachado en enero–octubre de 2026 es diésel?
+Métrica      Suma de volumen_gal de BIODIESEL CON MEZCLA / suma de volumen_gal de todos los productos
+Período      Enero a octubre de 2026
+Dato         despachos_eds_mensual.csv (anio, mes, producto, volumen_gal)
+Gráfico      Indicador con el porcentaje; barras con los productos
+Control      Un poco menos de la mitad (casi la mitad del volumen es diésel)
+Límites      Son despachos a estaciones: demanda, no venta al consumidor; no dice la causa
+Título       "El diésel es casi la mitad del volumen despachado en 2026"
 ```

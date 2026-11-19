@@ -1,36 +1,55 @@
-# Dashboards con IA: de datos abiertos a decisiones
+# Taller de 30 minutos · Tu primer dashboard con IA
 
-Dos sesiones con datos reales de combustibles de Colombia (datos.gov.co, SICOM, MinEnergía):
+Aprende a pasar de una pregunta de negocio a un dashboard **que puedas defender**, usando una IA en el navegador y **datos abiertos reales** de combustibles de Colombia. Lo haces **tú solo**, a tu ritmo y **sin instalar nada**.
 
-1. **Charla con tres demos · 90 minutos** (`presentacion/`, `facilitador/`).
-2. **Taller práctico · 30 minutos, en sesión aparte, sin instalar nada** (`taller-30min/`, `kit-taller-30min.zip`).
+> Los datos son **públicos** (Ministerio de Minas y Energía, SICOM, publicados en [datos.gov.co](https://www.datos.gov.co)). No uses datos internos ni confidenciales de tu organización en este taller.
 
-Hilo conductor: **decisión → pregunta → datos → cálculo → gráfico → verificación**.
+## Lo que necesitas
+- Un navegador y una **cuenta de Claude** ([claude.ai](https://claude.ai)). Sirve la cuenta gratuita, pero tiene un cupo de uso limitado: crear archivos gasta más cupo que un chat normal. Si tu cuenta se queda sin cupo, avísale al facilitador.
+- La opción de **ejecución de código y creación de archivos** activada en tu cuenta (Configuración → Capacidades). El paso 0 del cuaderno te guía.
+- 30 minutos, más 5 de preparación antes del taller.
 
-## Sesión 1 · Charla y demos (90 min)
-| Min | Bloque |
+## Cómo empezar (3 pasos)
+1. **Descarga el material:** botón verde **Code → Download ZIP** y descomprímelo.
+2. **Abre `cuaderno-30min.html`** con doble clic (se abre en tu navegador). Si prefieres texto, usa `cuaderno-30min.md`.
+3. **Sigue el cuaderno paso a paso.** Cada pregunta tiene un botón **Copiar**; tus anotaciones y casillas se guardan en tu navegador. El facilitador pasará por tu puesto en distintos momentos para revisar tu avance.
+
+## Qué vas a hacer
+| Minuto | Paso |
 |---|---|
-| 0–3 | Apertura |
-| 3–12 | Por qué ahora: señales de Microsoft y Anthropic, brecha adopción–confianza, cuatro razones |
-| 12–32 | La caja de herramientas: de un HTML con Plotly a Power BI (skills, MCP, plugins), método, datos y sus límites |
-| 32–77 | Tres demos de 15 min: **Claude web** · **Claude Desktop + Plotly** · **MCP + skills de Power BI** |
-| 77–82 | Verificación y comparación |
-| 82–90 | Invitación al taller de 30 minutos y cierre |
+| Antes | **Paso 0** · Preparación: cuenta, capacidad de código activada y datos a mano |
+| 0–3 | **Paso 1** · Subes los datos y fijas las reglas de trabajo |
+| 3–10 | **Pasos 2 y 3** · Calculas dos cifras con su cálculo a la vista y las **verificas contra un control** |
+| 10–15 | **Pasos 4 y 5** · Una pregunta con matices y una **pregunta trampa** (que los datos no pueden responder) |
+| 15–25 | **Paso 6** · Pides el dashboard y lo mejoras, un cambio por mensaje |
+| 25–30 | **Paso 7** · Verificas con una lista de 4 preguntas y guardas una captura |
 
-## Qué hay aquí
-| Carpeta | Contenido | ¿Se reparte? |
-|---|---|---|
-| `referencia/` | `dashboard-referencia.html` (sin internet), `demo2-plotly/` (script, README y HTML de respaldo) y `demo3-powerbi/` (runbook, verificador de requisitos, DAX de referencia) | Se muestran |
-| `kit-taller-30min.zip` | Kit del taller de 30 minutos (2 CSV, prompt maestro, cuaderno, plantilla, diccionario) | Sí |
-| `participante/` y `kit-participante.zip` | Kit completo con 4 misiones avanzadas (extensión después del taller) | Opcional |
-| `datos/` | CSV agregados, `preparar_datos.py` (consultas SoQL), manifiesto | Los CSV, sí |
+Los **controles** (las cifras correctas para comparar) te los entrega el facilitador durante el taller, en tarjetas, para que primero anotes **tus** resultados.
 
-## Fuentes (datos.gov.co · MinEnergía · CC BY-SA 4.0)
-`fbht-2fzd` despacho a estaciones · `339g-zjac` despacho de mayoristas (~7,2 M de filas) · `he3q-86dn` precios de GNV · `v8jr-kywh` ventas de GNV · `shbt-hqy9` beneficio en zona de frontera.
+## Qué hay en este repositorio
+| Archivo | Para qué |
+|---|---|
+| `cuaderno-30min.html` | **Empieza aquí.** El paso a paso interactivo: copiar prompts, casillas, campos para anotar y temporizador |
+| `cuaderno-30min.md` | La misma guía en texto, por si no puedes abrir el HTML |
+| `prompt-maestro.md` | El texto que pegas al inicio de tu chat para fijar las reglas de trabajo |
+| `plantilla-pregunta.md` | Una página para convertir una necesidad de negocio en una pregunta verificable |
+| `banco-de-preguntas.md` | Preguntas listas para pegar en cada paso previo al dashboard (la ruta rápida está marcada con ★) |
+| `diccionario-datos.md` | Qué contiene cada archivo de datos y qué **no** dicen |
+| `datos/` | Los dos archivos CSV que subes a Claude |
 
-## Estado de la verificación
-- **Verificado:** cifras de control (contra otro taller y contra la API en vivo), dashboards de referencia, kit sin filtración de respuestas, contenido de Microsoft contrastado con la documentación oficial de noviembre de 2026.
-- **Pendiente de ensayo:** respuestas de tu herramienta y modelo en las demos 1 y 2, y la Demo 3 completa (MCP + skill de reportes), que no se ejecutó. Verificación de acceso a claude.ai y de cupo con cuentas reales antes del taller.
+## Tres reglas para todo el taller
+1. **Una cifra sin cálculo visible no se publica.** Pide siempre cómo se calculó: archivo, filtros y período.
+2. **Compara períodos equivalentes:** enero–octubre contra enero–octubre, nunca un año parcial contra uno completo.
+3. **Si los datos no pueden responder algo, la respuesta correcta es «no se puede con estos datos».** Las causas son hipótesis, no hechos.
 
-## Empieza por
-`facilitador/preparacion.md` y `facilitador/guion-90min.md`; para el taller, `taller-30min/facilitador/guion-30min.md`.
+## Preguntas frecuentes
+- **No se abre el cuaderno HTML.** Ábrelo con otro navegador (Chrome, Edge, Firefox) o usa `cuaderno-30min.md`.
+- **Claude no lee los CSV.** Revisa que la ejecución de código y la creación de archivos estén activadas, sube de nuevo los archivos o abre un chat nuevo.
+- **Me quedé sin cupo de uso.** Avisa al facilitador; puedes esperar unos minutos o usar la cuenta de otra persona (solo con estos datos abiertos).
+- **No terminé a tiempo.** Está bien: el cuaderno guarda tu avance en el navegador. Si te atrasas, salta las preguntas 3 y 4 y ve directo al dashboard (paso 6).
+
+## Datos y licencia de los datos
+- **Fuente:** Ministerio de Minas y Energía, Sistema de Información de Combustibles (SICOM), datos.gov.co. Conjuntos: `fbht-2fzd` (despacho a estaciones de servicio) y `he3q-86dn` (precios de gas natural vehicular).
+- **Licencia de los datos de origen:** CC BY-SA 4.0. Si los reutilizas o publicas resultados, cita la fuente y la fecha de corte (**octubre de 2026**).
+- Los archivos de `datos/` son **tablas agregadas por mes** a partir de esos conjuntos (los originales tienen millones de filas), con los valores numéricos y las fechas normalizados.
+- **Límites que debes conocer:** un despacho es una compra de la estación al mayorista (indica demanda, no es la venta al consumidor final); los datos **no incluyen la marca** de la estación; y la unidad del precio del gas natural vehicular **no está documentada** (se asume COP por m³).
