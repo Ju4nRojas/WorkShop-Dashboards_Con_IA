@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Combustibles en Colombia · Tablero de referencia</title>
+<style>
+:root{
+  color-scheme:light;
+  --surface-1:#fcfcfb; --surface-2:#f4f3f0; --line:#e6e5e1;
+  --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#74736e;
+  --series-1:#2a78d6; --series-2:#eb6834; --series-3:#1baf7a;
+  --accent:#145F1C; --accent-wash:#e6f6ea; --warn:#8a5a00; --warn-wash:#fff4dc;
+  --font:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme:dark;
+    --surface-1:#1a1a19; --surface-2:#232321; --line:#33332f;
+    --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#9b9a92;
+    --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70;
+    --accent:#6dfd8c; --accent-wash:#16301d; --warn:#f2c260; --warn-wash:#34290f;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --surface-1:#1a1a19; --surface-2:#232321; --line:#33332f;
+  --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#9b9a92;
+  --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70;
+  --accent:#6dfd8c; --accent-wash:#16301d; --warn:#f2c260; --warn-wash:#34290f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--surface-2);color:var(--text-primary);font-family:var(--font);line-height:1.45;padding:0 16px 40px}
+.wrap{max-width:1240px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:28px 0 18px;flex-wrap:wrap}
+header h1{font-size:26px;font-weight:700;letter-spacing:-.01em}
+header p{color:var(--text-secondary);font-size:14px;margin-top:4px}
+.badge{display:inline-block;background:var(--accent-wash);color:var(--accent);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;margin-bottom:8px;letter-spacing:.04em}
+button.tg{background:var(--surface-1);color:var(--text-secondary);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font:600 13px var(--font);cursor:pointer}
+button.tg:hover{color:var(--text-primary)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.card{background:var(--surface-1);border:1px solid var(--line);border-radius:14px;padding:20px 22px 16px;min-width:0}
+.s12{grid-column:span 12}.s7{grid-column:span 7}.s5{grid-column:span 5}.s6{grid-column:span 6}
+@media (max-width:900px){.s7,.s5,.s6{grid-column:span 12}}
+.card h2{font-size:18px;font-weight:700;line-height:1.3;letter-spacing:-.005em}
+.sub{color:var(--text-muted);font-size:13px;margin:4px 0 14px}
+.calc{color:var(--text-muted);font-size:12px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.calc b{color:var(--text-secondary)}
+.note{background:var(--warn-wash);color:var(--text-primary);border-left:4px solid var(--warn);border-radius:6px;padding:10px 12px;font-size:13px;margin-top:12px}
+.note b{color:var(--warn)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--text-secondary);margin-bottom:6px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+/* KPI */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:6px}
+@media (max-width:900px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.tile{background:var(--surface-2);border-radius:12px;padding:16px 18px}
+.tile .l{font-size:13px;color:var(--text-secondary);font-weight:600}
+.tile .v{font-size:34px;font-weight:700;letter-spacing:-.02em;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.tile .v small{font-size:14px;color:var(--text-muted);font-weight:600;margin-left:4px}
+.tile .d{font-size:13px;color:var(--text-secondary)}
+.tile .d b{font-weight:700;color:var(--text-primary)}
+/* bars */
+.rows{display:flex;flex-direction:column;gap:7px}
+.row{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:10px;font-size:13px;cursor:default;border-radius:6px}
+.row:hover{background:var(--surface-2)}
+.row .lab{color:var(--text-secondary);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .trk{display:flex;flex-direction:column;gap:2px}
+.row .ln{display:flex;align-items:center;gap:8px}
+.row .bar{height:16px;border-radius:0 4px 4px 0;flex:none}
+.row .val{color:var(--text-primary);font-weight:600;font-variant-numeric:tabular-nums}
+@media (max-width:520px){.row{grid-template-columns:104px 1fr}}
+/* svg */
+svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{font-family:var(--font);fill:var(--text-muted);font-size:11px}
+svg .lab{fill:var(--text-secondary);font-size:12px;font-weight:600}
+details{margin-top:10px;font-size:13px}
+summary{cursor:pointer;color:var(--text-secondary);font-weight:600}
+table{border-collapse:collapse;width:100%;margin-top:8px;font-size:12px;font-variant-numeric:tabular-nums}
+th,td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:right}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--text-secondary);font-weight:700}
+.tbl{max-height:220px;overflow:auto}
+#tt{position:fixed;pointer-events:none;background:var(--text-primary);color:var(--surface-1);font-size:12px;padding:8px 10px;border-radius:8px;z-index:10;opacity:0;transition:opacity .08s;max-width:260px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+#tt b{display:block;margin-bottom:3px}
+#tt i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px}
+footer{margin-top:20px;font-size:12.5px;color:var(--text-secondary)}
+footer b{color:var(--text-primary)}
+footer ul{margin:8px 0 0 18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div><span class="badge">DASHBOARD DE REFERENCIA · TALLER</span><h1>Combustibles en Colombia</h1>
+  <p id="meta"></p></div>
+  <button class="tg" id="theme" type="button">Modo claro / oscuro</button>
+</header>
+<main class="grid">
+  <section class="card s12" aria-labelledby="t1"><h2 id="t1"></h2><div class="sub" id="s1"></div><div class="tiles" id="tiles"></div>
+    <div class="calc"><b>Cálculo:</b> suma de <code>volumen_gal</code> de enero al mes de corte de cada año, en millones de galones (Mgal). Mismos meses en ambos años. Incluye gasolina corriente, extra, diésel (biodiésel con mezcla) y diésel marino.</div></section>
+  <section class="card s7" aria-labelledby="t2"><h2 id="t2"></h2><div class="sub">Volumen mensual despachado a estaciones de servicio, Mgal</div><div class="legend" id="l2"></div><div id="c2"></div>
+    <details><summary>Ver tabla</summary><div class="tbl" id="tb2"></div></details>
+    <div class="calc"><b>Cálculo:</b> suma mensual de <code>volumen_gal</code> por producto. Diésel marino excluido (≈0,02 % del volumen).</div></section>
+  <section class="card s5" aria-labelledby="t3"><h2 id="t3"></h2><div class="sub" id="s3"></div><div class="rows" id="c3"></div>
+    <details><summary>Ver tabla</summary><div class="tbl" id="tb3"></div></details>
+    <div class="calc"><b>Cálculo:</b> suma de <code>volumen_gal</code> de diésel, enero–<span class="mc"></span>. Se excluyen filas con departamento "-". Bogotá D.C. se muestra aparte de Cundinamarca.</div></section>
+  <section class="card s6" aria-labelledby="t4"><h2 id="t4"></h2><div class="sub">Precio promedio publicado por las estaciones, COP/m³ (supuesto: unidad no documentada). La franja es el rango mín–máx.</div><div class="legend" id="l4"></div><div id="c4"></div>
+    <div class="note" id="n4"></div>
+    <details><summary>Ver tabla</summary><div class="tbl" id="tb4"></div></details>
+    <div class="calc"><b>Cálculo:</b> promedio simple de <code>precio_promedio</code> entre las estaciones del municipio; mediana, mín y máx entre estaciones.</div></section>
+  <section class="card s6" aria-labelledby="t5"><h2 id="t5"></h2><div class="sub">Volumen mensual de GNV suministrado, millones de m³ (todos los departamentos)</div><div id="c5"></div>
+    <div class="note" id="n5"></div>
+    <details><summary>Ver tabla</summary><div class="tbl" id="tb5"></div></details>
+    <div class="calc"><b>Cálculo:</b> suma mensual de <code>cantidad_volumen_suministrado</code>. 2022 se omite: cobertura parcial.</div></section>
+  <section class="card s12" aria-labelledby="t6"><h2 id="t6"></h2><div class="sub" id="s6"></div><div class="legend" id="l6"></div><div class="rows" id="c6"></div>
+    <details><summary>Ver tabla</summary><div class="tbl" id="tb6"></div></details>
+    <div class="calc"><b>Cálculo:</b> despacho = suma de <code>volumen_gal</code> en destinos marcados como zona de frontera; cupo = suma de <code>beneficio</code> (tipo CUPO UPME), enero–<span class="mc"></span>. <b>Supuesto:</b> el cupo está en galones (no documentado).</div></section>
+</main>
+<footer>
+  <p><b>Fuente:</b> datos.gov.co · Ministerio de Minas y Energía (SICOM) · licencia CC BY-SA 4.0 · corte <span id="corte"></span>. Tablas agregadas por mes a partir de los conjuntos fbht-2fzd, he3q-86dn, v8jr-kywh y shbt-hqy9.</p>
+  <ul>
+    <li>Un despacho es una compra de la estación al mayorista: indica demanda, no es la venta al consumidor final.</li>
+    <li>Los datos no incluyen la marca de la estación: no permiten calcular participación por empresa.</li>
+    <li>Las causas de cualquier cambio son hipótesis por verificar; los datos no las contienen.</li>
+  </ul>
+</footer>
+</div>
+<div id="tt" role="tooltip"></div>
+<script>
+const D = {"corte": "octubre de 2026", "corte_txt": "octubre de 2026", "anio": 2026, "mes_corte": "oct", "kpi": {"total": {"actual": 3596.45056933, "anterior": 3486.40828205, "crec": 3.1563224492828335}, "corriente": {"actual": 1879.49172744, "anterior": 1834.32242173, "crec": 2.4624518119011674}, "extra": {"actual": 67.25834972999999, "anterior": 55.186341, "crec": 21.874993904741746}, "diesel": {"actual": 1649.07048716, "anterior": 1596.48651932, "crec": 3.293730777156667}}, "mens": {"labels": ["ene 22", "feb 22", "mar 22", "abr 22", "may 22", "jun 22", "jul 22", "ago 22", "sep 22", "oct 22", "nov 22", "dic 22", "ene 23", "feb 23", "mar 23", "abr 23", "may 23", "jun 23", "jul 23", "ago 23", "sep 23", "oct 23", "nov 23", "dic 23", "ene 24", "feb 24", "mar 24", "abr 24", "may 24", "jun 24", "jul 24", "ago 24", "sep 24", "oct 24", "nov 24", "dic 24", "ene 25", "feb 25", "mar 25", "abr 25", "may 25", "jun 25", "jul 25", "ago 25", "sep 25", "oct 25", "nov 25", "dic 25", "ene 26", "feb 26", "mar 26", "abr 26", "may 26", "jun 26", "jul 26", "ago 26", "sep 26", "oct 26"], "anios": [2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2026, 2026, 2026, 2026, 2026, 2026, 2026, 2026, 2026, 2026], "meses": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "corriente": [186.34901837, 179.26814797, 201.94496903, 197.16952465000003, 196.52740182999997, 193.98709501, 199.62256824999997, 208.63154601000002, 205.17771855, 201.26588607, 198.671108, 218.91505299, 195.03698226999995, 180.70378491999998, 200.92209485, 193.02384105, 201.81528049000002, 193.21164299, 197.30263398, 197.42685374999994, 189.77606944000001, 193.9191202, 185.31116611, 204.61253773999996, 186.11443447000002, 173.63804797999998, 179.75302702, 179.09065488, 181.83865434, 175.03523838, 182.50999536000003, 182.06607945000002, 174.68383455999998, 187.07523171999998, 180.242952, 203.644384, 184.21934822, 166.62668243, 183.1977905, 182.710057, 187.00075293999998, 175.24825801999998, 193.10764378000002, 188.39049598000003, 186.90438783, 186.91700503, 184.50590365, 206.60742204, 179.37699118, 171.30307899999997, 200.52095786, 186.43764081999998, 189.76968431999998, 186.85254354, 194.01380897999996, 190.72743859, 185.84934722, 194.64023593000005], "extra": [4.629175, 4.409028, 4.787539, 4.368930669999999, 4.31509, 3.840901, 3.951634, 3.946284, 3.7824959999999996, 3.3831240399999993, 3.4975930500000003, 4.029757999999999, 3.355551, 2.943855, 3.434497, 3.12427, 3.293537, 3.43242196, 3.158035, 3.58142852, 3.263381, 3.4388170000000002, 3.5205439999999997, 4.242301000000001, 3.875781, 3.6537740000000003, 3.859622, 3.9432710000000006, 3.9372149999999997, 3.943814, 4.044775, 4.3540090000000005, 4.233116, 4.616256000000001, 4.494337, 5.496523999999999, 5.076902, 4.624536999999999, 5.239072, 5.602448, 5.4079999999999995, 5.13922, 5.9539729999999995, 5.935564, 5.994307, 6.212318000000001, 6.142226, 7.439088, 6.403230000000001, 6.395612, 7.610848540000001, 6.590527000000001, 6.529525619999999, 6.384875000000001, 6.73922402, 6.775148, 6.879783549999999, 6.949576], "diesel": [134.59076541, 138.01396302, 154.88585902999998, 142.71821796999996, 146.93916115000002, 145.18167096000002, 147.78787595000003, 156.63361447, 155.40199754, 150.80004505, 151.26001, 154.20890499, 137.52732794, 142.30249675, 153.18361142999996, 141.65666593999998, 153.04039599999996, 146.14195504, 148.92495858, 156.16655998000002, 155.72173643000002, 153.04423802000002, 152.18341298, 152.32845503000001, 144.9404996, 148.18423664, 145.03643723, 154.85689854, 151.17324737, 143.42924399999998, 156.994944, 156.6488904, 147.79336687, 161.50544299999999, 159.55953825000003, 158.70083597, 152.68264487, 150.951651, 161.2395896, 155.0308598, 163.432773, 148.968903, 170.07910263, 162.88572000000002, 166.12023141000003, 165.09504400999998, 163.62002253000006, 164.41907006000002, 150.6887964, 153.98098292999998, 168.22042511000004, 161.49582268, 166.031209, 160.65886789, 172.19109318000002, 168.99210820000002, 171.91452400000003, 174.89665777]}, "diesel": {"filas": [{"d": "Antioquia", "v": 251.73985041}, {"d": "Cundinamarca", "v": 180.27269033}, {"d": "Valle del Cauca", "v": 157.0329875}, {"d": "Bogotá D.C.", "v": 123.08200827}, {"d": "Cesar", "v": 114.54557860999999}, {"d": "Norte de Santander", "v": 80.27962771}, {"d": "Santander", "v": 76.37073036}, {"d": "Tolima", "v": 67.17663463}, {"d": "Bolívar", "v": 60.461482000000004}, {"d": "Boyacá", "v": 56.04298225}], "top3_share": 35.7198514451886, "total": 1649.0704871599999, "otros": 482.06591509, "n_otros": 23}, "precio": {"labels": ["ene 22", "feb 22", "mar 22", "abr 22", "may 22", "jun 22", "jul 22", "ago 22", "sep 22", "oct 22", "nov 22", "dic 22", "ene 23", "feb 23", "mar 23", "abr 23", "may 23", "jun 23", "jul 23", "ago 23", "sep 23", "oct 23", "nov 23", "dic 23", "ene 24", "feb 24", "mar 24", "abr 24", "may 24", "jun 24", "jul 24", "ago 24", "sep 24", "oct 24", "nov 24", "dic 24", "ene 25", "feb 25", "mar 25", "abr 25", "may 25", "jun 25", "jul 25", "ago 25", "sep 25", "oct 25", "nov 25", "dic 25", "ene 26", "feb 26", "mar 26", "abr 26", "may 26", "jun 26", "jul 26", "ago 26", "sep 26", "oct 26"], "bog": {"avg": [1787.21, 1851.48, 1794.26, 1747.87, 1745.55, 1743.9, 1796.06, 1800.05, 1814.92, 1896.75, 1962.41, 1998.17, 2019.38, 2015.52, 2021.72, 2000.91, 1998.0, 2000.56, 1985.31, 1977.36, 2012.52, 2026.48, 2052.51, 2110.67, 2130.66, 2103.43, 2147.47, 2152.9, 2124.98, 2185.88, 2170.13, 2194.1, 2262.71, 2297.9, 2363.34, 2474.65, 2389.3, 2435.43, 2371.94, 2362.62, 2370.19, 2360.29, 2359.69, 2355.24, 2394.62, 2442.66, 2451.16, 3127.25, 3112.57, 2986.12, 2949.02, 2867.76, 2861.78, 2824.73, 2771.86, 2682.55, 3097.58, 3950.3], "lo": [1499.0, 1499.0, 1499.0, 1499.0, 1499.0, 1499.0, 1499.0, 1499.0, 1499.0, 1599.0, 1599.0, 1599.0, 1599.0, 1599.0, 1699.0, 1699.0, 1699.0, 1699.0, 1699.0, 1699.0, 1799.0, 1799.0, 1799.0, 1799.0, 1799.0, 1799.0, 1799.0, 1799.0, 1799.0, 1799.0, 1745.0, 1799.0, 1799.0, 1799.0, 1899.0, 1899.0, 1899.0, 1899.0, 1899.0, 1899.0, 1899.0, 1899.0, 1899.0, 1899.0, 1619.0, 1776.0, 1756.0, 2365.0, 2749.0, 2749.0, 2749.0, 2665.0, 2623.0, 2588.0, 2611.0, 2510.0, 2373.0, 2404.0], "hi": [2055.0, 2055.0, 1999.0, 1947.0, 1920.0, 1899.0, 1999.0, 1999.0, 1999.0, 2099.0, 2327.0, 2299.0, 2327.0, 2299.0, 2299.0, 2199.0, 2299.0, 2410.0, 2299.0, 2190.0, 2190.0, 2190.0, 2229.0, 2339.0, 2339.0, 2329.0, 3649.0, 3649.0, 2269.0, 3649.0, 2359.0, 2687.0, 2693.0, 2718.0, 2840.0, 3288.0, 2868.0, 2899.0, 2850.0, 2850.0, 2690.0, 2699.0, 2899.0, 2599.0, 2650.0, 2749.0, 2869.0, 3530.0, 3610.0, 3534.0, 3360.0, 3190.0, 3250.0, 3050.0, 2999.0, 2999.0, 3799.0, 4999.0], "med": [1797.0, 1879.5, 1832.0, 1799.0, 1799.0, 1799.0, 1849.0, 1849.0, 1889.0, 1949.0, 2009.0, 2059.0, 2059.0, 2098.0, 2079.0, 2079.0, 2079.0, 2079.0, 2079.0, 2069.0, 2079.0, 2079.0, 2099.0, 2199.0, 2199.0, 2199.0, 2199.0, 2209.0, 2215.0, 2259.0, 2299.0, 2289.0, 2299.0, 2344.5, 2399.0, 2519.0, 2519.0, 2490.0, 2499.0, 2499.0, 2509.0, 2499.0, 2499.0, 2499.0, 2559.5, 2619.0, 2648.0, 3265.0, 3150.0, 2958.0, 2939.0, 2937.0, 2899.0, 2877.5, 2820.0, 2699.0, 3199.0, 3755.0], "n": [56.0, 50.0, 62.0, 53.0, 56.0, 51.0, 62.0, 57.0, 60.0, 63.0, 68.0, 59.0, 68.0, 61.0, 60.0, 58.0, 59.0, 57.0, 54.0, 55.0, 58.0, 56.0, 65.0, 60.0, 56.0, 47.0, 47.0, 51.0, 49.0, 57.0, 53.0, 59.0, 58.0, 50.0, 53.0, 48.0, 47.0, 51.0, 51.0, 47.0, 54.0, 58.0, 52.0, 51.0, 56.0, 58.0, 45.0, 64.0, 56.0, 59.0, 46.0, 37.0, 58.0, 48.0, 49.0, 53.0, 55.0, 60.0]}, "med": {"avg": [1885.56, 1948.5, 1950.5, 1956.33, 1973.35, 2027.75, 2060.93, 2055.0, 2128.68, 2214.0, 2274.05, 2340.25, 2394.0, 2413.33, 2409.33, 2419.5, 2404.0, 2416.79, 2410.0, 2415.33, 2389.67, 2413.0, 2462.78, 2495.67, 2553.46, 2560.0, 2577.5, 2571.36, 2592.5, 2623.75, 2662.67, 2665.0, 2763.88, 2860.79, 3123.62, 3854.0, 3703.38, 3781.44, 3472.3, 3465.42, 3410.71, 3470.64, 3353.56, 3363.31, 3380.0, 3667.56, 3644.5, 3544.67, 3551.0, 3571.55, 3394.62, 3376.5, 3309.56, 3275.25, 3259.0, 3184.1, 3249.61, 3402.92], "lo": [1878.0, 1878.0, 1901.0, 1955.0, 1949.0, 1949.0, 2049.0, 2055.0, 2055.0, 2155.0, 2200.0, 2300.0, 2325.0, 2395.0, 2400.0, 2335.0, 2100.0, 2335.0, 2335.0, 2355.0, 2220.0, 2235.0, 2365.0, 2350.0, 2530.0, 2550.0, 2550.0, 2550.0, 2590.0, 2585.0, 2650.0, 2655.0, 2665.0, 2680.0, 2995.0, 3690.0, 3399.0, 3400.0, 3399.0, 3399.0, 3299.0, 3389.0, 3289.0, 3279.0, 3269.0, 3499.0, 3499.0, 3499.0, 3439.0, 3409.0, 3349.0, 3339.0, 3249.0, 3229.0, 3149.0, 3149.0, 3149.0, 3346.0], "hi": [1895.0, 1958.0, 1958.0, 1958.0, 1999.0, 2055.0, 2144.0, 2055.0, 2155.0, 2265.0, 2325.0, 2400.0, 2400.0, 2435.0, 2435.0, 2435.0, 2450.0, 2450.0, 2450.0, 2450.0, 2450.0, 2465.0, 2565.0, 2565.0, 2590.0, 2565.0, 2610.0, 2580.0, 2595.0, 2670.0, 2690.0, 2690.0, 3074.0, 3099.0, 3208.0, 4250.0, 3990.0, 3990.0, 3700.0, 3590.0, 3490.0, 3500.0, 3400.0, 3400.0, 3449.0, 3750.0, 3720.0, 3690.0, 3590.0, 3690.0, 3499.0, 3499.0, 3339.0, 3339.0, 3339.0, 3199.0, 3399.0, 3450.0], "med": [1878.0, 1955.0, 1955.0, 1955.0, 1958.0, 2055.0, 2055.0, 2055.0, 2155.0, 2200.0, 2300.0, 2325.0, 2397.5, 2400.0, 2400.0, 2430.0, 2430.0, 2430.0, 2415.0, 2415.0, 2415.0, 2415.0, 2460.0, 2530.0, 2560.0, 2560.0, 2580.0, 2580.0, 2592.5, 2602.5, 2655.0, 2665.0, 2670.0, 2777.5, 3170.0, 3890.0, 3594.5, 3839.5, 3399.0, 3500.0, 3399.0, 3500.0, 3399.0, 3399.0, 3369.5, 3717.0, 3669.5, 3529.0, 3590.0, 3590.0, 3399.0, 3349.0, 3299.0, 3249.0, 3234.0, 3189.5, 3242.5, 3450.0], "n": [9.0, 10.0, 10.0, 9.0, 17.0, 8.0, 14.0, 12.0, 19.0, 20.0, 21.0, 20.0, 20.0, 18.0, 15.0, 10.0, 15.0, 14.0, 20.0, 15.0, 15.0, 15.0, 18.0, 15.0, 13.0, 11.0, 12.0, 11.0, 14.0, 20.0, 15.0, 17.0, 17.0, 14.0, 21.0, 15.0, 16.0, 18.0, 10.0, 12.0, 7.0, 11.0, 9.0, 13.0, 12.0, 18.0, 12.0, 18.0, 14.0, 11.0, 16.0, 8.0, 16.0, 8.0, 14.0, 10.0, 18.0, 13.0]}, "c7": {"bogota": {"precio": 3950.3, "min": 2404.0, "max": 4999.0, "registros": 60, "mediana": 3755.0, "n_estaciones": 60, "n_cerca_5000": 22, "pct_cerca_5000": 36.666666666666664, "n_cerca_2400": 12}, "medellin": {"precio": 3402.92, "min": 3346.0, "max": 3450.0, "registros": 13, "mediana": 3450.0, "n_estaciones": 13}, "evolucion": [{"mes": "2026-08", "bogota": 2682.55, "medellin": 3184.1}, {"mes": "2026-09", "bogota": 3097.58, "medellin": 3249.61}, {"mes": "2026-10", "bogota": 3950.3, "medellin": 3402.92}]}}, "gnv": {"labels": ["ene 23", "feb 23", "mar 23", "abr 23", "may 23", "jun 23", "jul 23", "ago 23", "sep 23", "oct 23", "nov 23", "dic 23", "ene 24", "feb 24", "mar 24", "abr 24", "may 24", "jun 24", "jul 24", "ago 24", "sep 24", "oct 24", "nov 24", "dic 24", "ene 25", "feb 25", "mar 25", "abr 25", "may 25", "jun 25", "jul 25", "ago 25", "sep 25", "oct 25", "nov 25", "dic 25", "ene 26", "feb 26", "mar 26", "abr 26", "may 26", "jun 26", "jul 26", "ago 26", "sep 26", "oct 26"], "vol": [34.33011748000001, 33.90793892, 37.75738663, 34.87549249, 35.18102691, 35.827155129999994, 36.72964262000001, 37.584910040000004, 38.66837247, 38.90995058000001, 38.640970190000004, 40.423310830000005, 36.48201346, 28.55022239, 40.57013835000001, 40.9253507, 43.92399839, 40.46528394, 38.40296151, 38.749454619999995, 38.603733760000004, 40.78917469, 38.735988219999996, 38.09487136, 37.34580703, 36.9293661, 39.962945129999994, 37.931636139999995, 40.020495450000006, 37.220635439999995, 39.9153905, 40.0371187, 47.871091019999994, 37.11250386, 26.916070859999998, 26.21712337, 23.325797149999996, 21.369870719999998, 25.09140646, 19.6281409, 25.404735060000004, 26.63784667, 23.799569319999996, 25.037578850000003, 27.478491700000003, 28.419209000000002], "i_quiebre": 34, "i_pico": 32, "q": {"oct2025_mm3": 37.11250386, "nov2025_mm3": 26.916070859999998, "m3_por_vehiculo_oct2025": 13.866249546509703, "m3_por_vehiculo_nov2025": 11.032352160476115, "bogota_var_pct": -49.6924352442359, "cundinamarca_var_pct": -56.62785049876995, "pico_sep2025_mm3": 47.871091019999994}, "crec_ene_oct": -37.56953838463129}, "frontera": {"filas": [{"d": "Cesar", "desp": 188.4694778, "cupo": 183.63161304, "uso": 102.63454896458714}, {"d": "Norte de Santander", "desp": 132.21394229999999, "cupo": 152.64579147, "uso": 86.61486243856545}, {"d": "Nariño", "desp": 125.281423, "cupo": 119.106306, "uso": 105.18454245403261}, {"d": "La Guajira", "desp": 45.993383, "cupo": 52.692746119999995, "uso": 87.2859859974973}, {"d": "Putumayo", "desp": 25.189459, "cupo": 22.145079, "uso": 113.74743345914457}, {"d": "Arauca", "desp": 20.296487, "cupo": 21.803832, "uso": 93.08678859752726}, {"d": "Guainía", "desp": 4.709896, "cupo": 4.56698, "uso": 103.12933273191473}, {"d": "Vichada", "desp": 4.62381, "cupo": 4.030498, "uso": 114.72056306689645}], "uso_nac": 97.46604296647186, "pct_nac": 15.614410966438403, "total": 561.5645721, "cupo_total": 576.16432863}};
+const C = ['var(--series-1)','var(--series-2)','var(--series-3)'];
+const $ = id => document.getElementById(id);
+const f = (n,d=1) => n.toLocaleString('es-CO',{minimumFractionDigits:d,maximumFractionDigits:d});
+const sg = (n,d=1) => (n>0?'+':n<0?'−':'')+f(Math.abs(n),d);
+const tt = $('tt');
+function tip(html,e){tt.innerHTML=html;tt.style.opacity=1;const w=tt.offsetWidth,h=tt.offsetHeight;let x=e.clientX+14,y=e.clientY-h-10;if(x+w>innerWidth-8)x=e.clientX-w-14;if(y<8)y=e.clientY+16;tt.style.left=x+'px';tt.style.top=y+'px'}
+function untip(){tt.style.opacity=0}
+function ticks(lo,hi,n=4){const r=(hi-lo)||1,raw=r/n,p=Math.pow(10,Math.floor(Math.log10(raw))),b=raw/p,s=(b<1.5?1:b<3?2:b<7?5:10)*p;const a=Math.floor(lo/s)*s,t=[];for(let v=a;v<=hi+s*.5;v+=s)t.push(+v.toFixed(6));return t}
+function table(el,head,rows){el.innerHTML='<table><thead><tr>'+head.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('')+'</tbody></table>'}
+function legend(el,items){el.innerHTML=items.map((s,i)=>'<span><i style="background:'+C[i]+'"></i>'+s+'</span>').join('')}
+
+/* ---------- gráfico de líneas con cruz y tooltip ---------- */
+function lineChart(el,o){
+  const W=760,H=o.h||290,m={l:50,r:o.rpad||78,t:12,b:28},n=o.labels.length,iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const vals=o.series.flatMap(s=>[...s.v,...(s.lo||[]),...(s.hi||[])]).filter(v=>v!=null);
+  let lo=o.zero?0:Math.min(...vals),hi=Math.max(...vals);const tk=ticks(lo,hi);lo=Math.min(lo,tk[0]);hi=Math.max(hi,tk[tk.length-1]);
+  const X=i=>m.l+i*iw/(n-1),Y=v=>m.t+ih-(v-lo)/(hi-lo)*ih;
+  let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+o.aria+'">';
+  tk.forEach(v=>{s+='<line x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="var(--line)" stroke-width="1"/><text x="'+(m.l-8)+'" y="'+(Y(v)+4)+'" text-anchor="end">'+f(v,o.yd||0)+'</text>'});
+  o.meses.forEach((mm,i)=>{if(mm===1)s+='<text x="'+X(i)+'" y="'+(H-8)+'" text-anchor="middle">'+o.anios[i]+'</text>'});
+  o.series.forEach((se,k)=>{
+    const col=se.color;
+    if(se.lo){let up='',dn='',run=false;for(let i=0;i<n;i++){if(se.lo[i]==null)continue;up+=(up?'L':'M')+X(i)+' '+Y(se.hi[i]);}for(let i=n-1;i>=0;i--){if(se.lo[i]==null)continue;dn+='L'+X(i)+' '+Y(se.lo[i]);}s+='<path d="'+up+dn+'Z" fill="'+col+'" opacity=".12"/>'}
+    if(o.area){let p='M'+X(0)+' '+Y(lo);for(let i=0;i<n;i++)p+='L'+X(i)+' '+Y(se.v[i]);p+='L'+X(n-1)+' '+Y(lo)+'Z';s+='<path d="'+p+'" fill="'+col+'" opacity=".10"/>'}
+    let d='',pen=false;for(let i=0;i<n;i++){if(se.v[i]==null){pen=false;continue}d+=(pen?'L':'M')+X(i)+' '+Y(se.v[i]);pen=true}
+    s+='<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    let li=n-1;while(li>0&&se.v[li]==null)li--;
+    s+='<circle cx="'+X(li)+'" cy="'+Y(se.v[li])+'" r="4" fill="'+col+'" stroke="var(--surface-1)" stroke-width="2"/>';
+    if(o.series.length>1&&!o.noLabel)s+='<text class="lab" x="'+(X(li)+9)+'" y="'+(Y(se.v[li])+4)+'">'+se.name+'</text>';
+  });
+  (o.ann||[]).forEach(a=>{const y=Y(o.series[0].v[a.i]);s+='<circle cx="'+X(a.i)+'" cy="'+y+'" r="5" fill="var(--surface-1)" stroke="var(--text-primary)" stroke-width="2"/><text class="lab" x="'+X(a.i)+'" y="'+(y+(a.dy||-12))+'" text-anchor="'+(a.anchor||'middle')+'">'+a.text+'</text>'});
+  s+='<line id="cx" y1="'+m.t+'" y2="'+(H-m.b)+'" stroke="var(--text-muted)" stroke-width="1" opacity="0"/>';
+  o.series.forEach((se,k)=>{s+='<circle class="hd" r="5" fill="'+se.color+'" stroke="var(--surface-1)" stroke-width="2" opacity="0"/>'});
+  s+='<rect x="'+m.l+'" y="'+m.t+'" width="'+iw+'" height="'+ih+'" fill="transparent" class="hit"/></svg>';
+  el.innerHTML=s;
+  const svg=el.firstChild,cx=svg.querySelector('#cx'),dots=[...svg.querySelectorAll('.hd')],hit=svg.querySelector('.hit');
+  function mv(e){const r=svg.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*W;let i=Math.round((px-m.l)/iw*(n-1));i=Math.max(0,Math.min(n-1,i));
+    cx.setAttribute('x1',X(i));cx.setAttribute('x2',X(i));cx.setAttribute('opacity',1);
+    let h='<b>'+(o.fullLabels?o.fullLabels[i]:o.labels[i])+'</b>';
+    o.series.forEach((se,k)=>{const v=se.v[i];if(v==null){dots[k].setAttribute('opacity',0);return}dots[k].setAttribute('cx',X(i));dots[k].setAttribute('cy',Y(v));dots[k].setAttribute('opacity',1);
+      h+='<div><i style="background:'+se.color+'"></i>'+se.name+': '+f(v,o.yd||0)+(o.unit||'')+(se.lo&&se.lo[i]!=null?' <span style="opacity:.75">(rango '+f(se.lo[i],0)+'–'+f(se.hi[i],0)+')</span>':'')+'</div>'});
+    if(o.extra)h+=o.extra(i);
+    tip(h,e)}
+  hit.addEventListener('pointermove',mv);hit.addEventListener('pointerleave',()=>{untip();cx.setAttribute('opacity',0);dots.forEach(d=>d.setAttribute('opacity',0))});
+}
+
+/* ---------- barras horizontales (1 o 2 series) ---------- */
+function bars(el,rows,keys,fmt,tipFn){
+  const max=Math.max(...rows.flatMap(r=>keys.map(k=>r[k])));
+  el.innerHTML=rows.map(r=>'<div class="row" data-i="'+rows.indexOf(r)+'"><div class="lab" title="'+r.d+'">'+r.d+'</div><div class="trk">'+keys.map((k,j)=>'<div class="ln"><div class="bar" style="width:calc('+(r[k]/max*100)+'% * .8);background:'+C[j]+';min-width:2px"></div><span class="val">'+fmt(r[k],k)+'</span></div>').join('')+'</div></div>').join('');
+  el.querySelectorAll('.row').forEach(rw=>{const r=rows[+rw.dataset.i];rw.addEventListener('pointermove',e=>tip(tipFn(r),e));rw.addEventListener('pointerleave',untip)});
+}
+
+/* ---------- ensamblado ---------- */
+const A=D.anio,mc=D.mes_corte;
+document.querySelectorAll('.mc').forEach(e=>e.textContent=mc);
+$('meta').textContent='Despachos de combustibles líquidos y GNV · corte '+D.corte_txt+' · fuente: datos.gov.co (MinEnergía–SICOM) · CC BY-SA 4.0';
+$('corte').textContent=D.corte_txt;
+
+// 1) KPI
+const K=D.kpi;
+$('t1').textContent='El consumo de combustibles líquidos creció '+f(K.total.crec,1)+' % en ene–'+mc+' '+A+' frente al mismo período de '+(A-1);
+$('s1').textContent='Volumen despachado a estaciones de servicio, enero–'+mc+', millones de galones (Mgal)';
+const tiles=[['Total',K.total],['Gasolina corriente',K.corriente],['Gasolina extra',K.extra],['Diésel (biodiésel con mezcla)',K.diesel]];
+$('tiles').innerHTML=tiles.map(([l,k])=>'<div class="tile"><div class="l">'+l+'</div><div class="v">'+f(k.actual,k.actual<100?1:0)+'<small>Mgal</small></div><div class="d">'+(k.crec>=0?'▲':'▼')+' <b>'+sg(k.crec,1)+' %</b> vs ene–'+mc+' '+(A-1)+' ('+f(k.anterior,k.anterior<100?1:0)+')</div></div>').join('');
+
+// 2) mensual
+const M=D.mens,sh=(K.corriente.actual+K.diesel.actual)/K.total.actual*100,shx=K.extra.actual/K.total.actual*100;
+$('t2').textContent='Gasolina corriente y diésel suman el '+f(sh,0)+' % del volumen; la extra pesa '+f(shx,0)+' %';
+legend($('l2'),['Gasolina corriente','Diésel','Gasolina extra']);
+lineChart($('c2'),{labels:M.labels,anios:M.anios,meses:M.meses,rpad:96,h:300,zero:true,unit:' Mgal',yd:0,aria:'Volumen mensual por producto, enero 2022 a '+mc+' '+A,
+  series:[{name:'Corriente',color:C[0],v:M.corriente},{name:'Diésel',color:C[1],v:M.diesel},{name:'Extra',color:C[2],v:M.extra}]});
+table($('tb2'),['Mes','Corriente','Diésel','Extra'],M.labels.map((l,i)=>[l,f(M.corriente[i]),f(M.diesel[i]),f(M.extra[i])]).reverse());
+
+// 3) diésel por departamento
+const Z=D.diesel,t3=Z.filas.slice(0,3).map(r=>r.d);
+$('t3').textContent='Tres departamentos concentran el '+f(Z.top3_share,0)+' % del diésel: '+t3[0]+', '+t3[1]+' y '+t3[2];
+$('s3').textContent='Diésel despachado, enero–'+mc+' '+A+', Mgal. Diez mayores; el resto ('+Z.n_otros+' departamentos) suma '+f(Z.otros,0)+' Mgal.';
+bars($('c3'),Z.filas,['v'],v=>f(v,1),r=>'<b>'+r.d+'</b>'+f(r.v,1)+' Mgal · '+f(r.v/Z.total*100,1)+' % del diésel nacional');
+table($('tb3'),['Departamento','Mgal','% del total'],Z.filas.map(r=>[r.d,f(r.v),f(r.v/Z.total*100)]).concat([['Otros ('+Z.n_otros+' departamentos)',f(Z.otros),f(Z.otros/Z.total*100)]]));
+
+// 4) precio GNV
+const P=D.precio,c7=P.c7,pb=c7.bogota,pm=c7.medellin,ev=c7.evolucion;
+$('t4').textContent='En oct-'+A+' el GNV pasa a ser más caro en Bogotá ('+f(pb.precio,0)+') que en Medellín ('+f(pm.precio,0)+'), pero '+f(pb.pct_cerca_5000,0)+' % de las estaciones de Bogotá publica ≈5.000';
+legend($('l4'),['Bogotá','Medellín']);
+lineChart($('c4'),{labels:P.labels,anios:M.anios,meses:M.meses,rpad:78,h:290,unit:' COP/m³',yd:0,aria:'Precio promedio de GNV en Bogotá y Medellín',
+  series:[{name:'Bogotá',color:C[0],v:P.bog.avg,lo:P.bog.lo,hi:P.bog.hi},{name:'Medellín',color:C[1],v:P.med.avg,lo:P.med.lo,hi:P.med.hi}],
+  extra:i=>'<div style="opacity:.75;margin-top:3px">Mediana: Bogotá '+(P.bog.med[i]==null?'–':f(P.bog.med[i],0))+' · Medellín '+(P.med.med[i]==null?'–':f(P.med.med[i],0))+'<br>Estaciones: Bogotá '+(P.bog.n[i]||'–')+' · Medellín '+(P.med.n[i]||'–')+'</div>'});
+$('n4').innerHTML='<b>Lectura prudente.</b> Hasta ago-'+A+' Bogotá era más barato que Medellín ('+f(ev[0].bogota,0)+' vs '+f(ev[0].medellin,0)+'). En oct-'+A+' el promedio de Bogotá sube a '+f(pb.precio,0)+', pero la mediana es '+f(pb.mediana,0)+' y la distribución se parte en grupos: '+pb.n_cerca_2400+' estaciones cerca de 2.400, y '+pb.n_cerca_5000+' de '+pb.n_estaciones+' cerca de 5.000. Los datos no dicen si es un alza real o un dato atípico: <b>hipótesis por verificar</b>. Mira la distribución, no solo el promedio.';
+table($('tb4'),['Mes','Bogotá prom.','Bogotá mediana','Bogotá mín–máx','Medellín prom.','Medellín mín–máx'],P.labels.map((l,i)=>[l,P.bog.avg[i]==null?'–':f(P.bog.avg[i],0),P.bog.med[i]==null?'–':f(P.bog.med[i],0),P.bog.lo[i]==null?'–':f(P.bog.lo[i],0)+'–'+f(P.bog.hi[i],0),P.med.avg[i]==null?'–':f(P.med.avg[i],0),P.med.lo[i]==null?'–':f(P.med.lo[i],0)+'–'+f(P.med.hi[i],0)]).reverse());
+
+// 5) volumen GNV
+const G=D.gnv,Q=G.q,caida=(G.vol[G.i_quiebre]/G.vol[G.i_quiebre-1]-1)*100;
+$('t5').textContent='El volumen de GNV cae de golpe en nov-2025 ('+sg(caida,0)+' % frente a octubre): ¿demanda o cambio en el reporte?';
+lineChart($('c5'),{labels:G.labels,anios:G.labels.map(l=>2000+ +l.split(' ')[1]),meses:G.labels.map(l=>['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'].indexOf(l.split(' ')[0])+1),
+  rpad:20,h:290,zero:true,area:true,noLabel:true,unit:' Mm³',yd:1,aria:'Volumen mensual de GNV, enero 2023 a '+mc+' '+A,
+  series:[{name:'GNV',color:C[0],v:G.vol}],ann:[{i:G.i_pico,text:'pico sep-25',dy:-12},{i:G.i_quiebre,text:'nov-25',dy:22}]});
+$('n5').innerHTML='<b>Lectura prudente.</b> En nov-2025 Bogotá cae '+sg(Q.bogota_var_pct,0)+' % y Cundinamarca '+sg(Q.cundinamarca_var_pct,0)+' % frente a octubre; los m³ por vehículo pasan de '+f(Q.m3_por_vehiculo_oct2025,1)+' a '+f(Q.m3_por_vehiculo_nov2025,1)+'. Los datos no explican por qué: <b>cambio en el reporte o caída real de demanda son hipótesis por verificar</b> con el Ministerio. Por eso la comparación ene–'+mc+' ('+sg(G.crec_ene_oct,1)+' %) no debe usarse como conclusión.';
+table($('tb5'),['Mes','Mm³'],G.labels.map((l,i)=>[l,f(G.vol[i],1)]).reverse());
+
+// 6) frontera
+const R=D.frontera;
+$('t6').textContent='La frontera pesa '+f(R.pct_nac,1)+' % del volumen nacional y se despacha ≈'+f(R.uso_nac,0)+' % del cupo asignado';
+$('s6').textContent='Despacho real a estaciones de zona de frontera frente al cupo UPME, enero–'+mc+' '+A+', Mgal (cupo en galones: supuesto). Ocho departamentos con mayor volumen.';
+legend($('l6'),['Despachado','Cupo asignado']);
+bars($('c6'),R.filas,['desp','cupo'],(v)=>f(v,1),r=>'<b>'+r.d+'</b>Despachado '+f(r.desp,1)+' Mgal<br>Cupo '+f(r.cupo,1)+' Mgal<br>Uso del cupo: '+f(r.uso,0)+' %');
+table($('tb6'),['Departamento','Despachado','Cupo','Uso del cupo %'],R.filas.map(r=>[r.d,f(r.desp),f(r.cupo),f(r.uso,0)]));
+
+// tema
+$('theme').onclick=()=>{const r=document.documentElement,cur=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');r.setAttribute('data-theme',cur==='dark'?'light':'dark')};
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "descargado": "2026-11-19",
+  "corte": "2026-10",
+  "licencia": "CC BY-SA 4.0",
+  "fuente": "datos.gov.co - Ministerio de Minas y Energia (SICOM)",
+  "archivos": {
+    "despachos_eds_mensual.csv": {
+      "dataset": "fbht-2fzd",
+      "titulo": "Estaciones de Servicio Automotriz y Fluvial: despacho de combustibles liquidos",
+      "filas": 6112,
+      "periodo": "2022-01 a 2026-10",
+      "url": "https://www.datos.gov.co/d/fbht-2fzd"
+    },
+    "despachos_mayoristas_mensual.csv": {
+      "dataset": "339g-zjac",
+      "titulo": "Distribuidores Mayoristas: despacho de combustibles liquidos",
+      "filas": 1452,
+      "periodo": "2022-01 a 2026-10",
+      "url": "https://www.datos.gov.co/d/339g-zjac"
+    },
+    "gnv_precios_mensual.csv": {
+      "dataset": "he3q-86dn",
+      "titulo": "Precios promedio de Gas Natural Comprimido Vehicular (GNCV)",
+      "filas": 2939,
+      "periodo": "2022-01 a 2026-10",
+      "url": "https://www.datos.gov.co/d/he3q-86dn"
+    },
+    "gnv_ventas_mensual.csv": {
+      "dataset": "v8jr-kywh",
+      "titulo": "Ventas de Gas Natural Comprimido Vehicular (GNCV)",
+      "filas": 1019,
+      "periodo": "2022-11 a 2026-10",
+      "url": "https://www.datos.gov.co/d/v8jr-kywh"
+    },
+    "frontera_beneficio_mensual.csv": {
+      "dataset": "shbt-hqy9",
+      "titulo": "Beneficio de estaciones de servicio en zona de frontera",
+      "filas": 735,
+      "periodo": "2022-01 a 2026-10",
+      "url": "https://www.datos.gov.co/d/shbt-hqy9"
+    },
+    "gnv_precios_estaciones_recientes.csv": {
+      "dataset": "he3q-86dn",
+      "titulo": "Precios de GNV por estacion (ultimos 4 meses)",
+      "filas": 670,
+      "periodo": "4 meses hasta 2026-10",
+      "url": "https://www.datos.gov.co/d/he3q-86dn"
+    }
+  }
+}
